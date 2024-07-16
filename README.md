@@ -9,3 +9,5 @@ MYSQL_USER=
 MYSQL_PASSWORD=
 MYSQL_DATABASE=
 ```
+### Secret Config
+Secret configured using github action secrets
