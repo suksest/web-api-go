@@ -1,6 +1,6 @@
 services:
   web-api: 
-    image: "suksest/web-api-sample:${BUILD_TAG}"
+    image: "suksest/web-api-go:latest"
     ports:
       - "80:3000"
     depends_on:
