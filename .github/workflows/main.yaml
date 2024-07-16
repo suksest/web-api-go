@@ -28,10 +28,7 @@ jobs:
     - build-and-push
     steps:
       - name: deploy
-        uses: Autom3/docker-deployment-action@3.0.1
+        uses: hoverkraft-tech/compose-action@v2.0.1
         with:
-          remote_docker_host: ${{ secrets.SERVER_HOST }}
-          remote_docker_port: 22
-          ssh_public_key: ${{ secrets.SSH_PUB_KEY }}
-          ssh_private_key: ${{ secrets.SSH_PRIV_KEY }}
-          args: docker compose --env-file ${{ secrets.ENV_FILE }} up -d
+          compose-flags: --env-file ${{ secrets.ENV_FILE }}
+          up-flags: --detach
