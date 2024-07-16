@@ -28,12 +28,17 @@ jobs:
     - build-and-push
     steps:
       - name: deploy
-        uses: Autom3/docker-deployment-action@3.0.1
+        # uses: Autom3/docker-deployment-action@3.0.1
+        # with:
+        #   remote_docker_host: ${{ format('{0}@{1}', secrets.SERVER_USERNAME, secrets.SERVER_HOST) }}
+        #   remote_docker_port: 22
+        #   ssh_private_key: ${{ secrets.SSH_PRIV_KEY }}
+        #   ssh_public_key: ${{ secrets.SSH_PUB_KEY }}
+        #   copy_stack_file: true
+        #   deploy_path: ${{ secrets.DEPLOYMENT_PATH }}
+        #   args: --env-file ${{ secrets.ENV_FILE }} up -d
+        uses: hoverkraft-tech/compose-action@v2.0.1
         with:
-          remote_docker_host: ${{ format('{0}@{1}', secrets.SERVER_USERNAME, secrets.SERVER_HOST) }}
-          remote_docker_port: 22
-          ssh_private_key: ${{ secrets.SSH_PRIV_KEY }}
-          ssh_public_key: ${{ secrets.SSH_PUB_KEY }}
-          copy_stack_file: true
-          deploy_path: ${{ secrets.DEPLOYMENT_PATH }}
-          args: --env-file ${{ secrets.ENV_FILE }} up -d
+          compose-file: docker-compose.yaml
+          up-flags: "--detach"
+          compose-flags: "--env-file ${{ secrets.ENV_FILE }}"
