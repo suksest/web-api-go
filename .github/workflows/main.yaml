@@ -36,4 +36,4 @@ jobs:
           port: 22
           script: |
             docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
-            docker compose up --env-file ${{ secrets.ENV_FILE }} -d suksest/web-api-go:${{ github.run_number }}
+            docker compose --env-file ${{ secrets.ENV_FILE }} up -d suksest/web-api-go:${{ github.run_number }}
