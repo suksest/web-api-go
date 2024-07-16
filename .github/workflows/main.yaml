@@ -35,4 +35,5 @@ jobs:
           ssh_private_key: ${{ secrets.SSH_PRIV_KEY }}
           ssh_public_key: ${{ secrets.SSH_PUB_KEY }}
           copy_stack_file: true
+          deploy_path: ${{ secrets.DEPLOYMENT_PATH }}
           args: --env-file ${{ secrets.ENV_FILE }} up -d
