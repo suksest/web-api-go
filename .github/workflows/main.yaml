@@ -37,5 +37,5 @@ jobs:
           script: |
             docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
             pwd
-            ls -alt
+            ls conf -alt
             docker compose --env-file /home/sukmasetyaji/conf/.env up -d suksest/web-api-go:${{ github.run_number }}
