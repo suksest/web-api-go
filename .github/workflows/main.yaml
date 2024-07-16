@@ -34,4 +34,5 @@ jobs:
           remote_docker_port: 22
           ssh_private_key: ${{ secrets.SSH_PRIV_KEY }}
           ssh_public_key: ${{ secrets.SSH_PUB_KEY }}
+          copy_stack_file: true
           args: --env-file ${{ secrets.ENV_FILE }} up -d
