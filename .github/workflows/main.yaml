@@ -49,4 +49,4 @@ jobs:
           key: ${{ secrets.SSH_PRIV_KEY }}
           script: |
             docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password ${{ secrets.DOCKERHUB_TOKEN }}
-            docker compose --env-file ${{ secrets.ENV_FILE }} up --detach
+            docker compose --env-file ${{ secrets.ENV_FILE }} --file ${{ secrets.DEPLOYMENT_PATH }}/docker-compose.yaml up --detach
