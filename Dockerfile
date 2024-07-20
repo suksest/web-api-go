@@ -6,6 +6,6 @@ RUN go build -o webapp
 FROM alpine:3.20 AS release
 WORKDIR /app
 COPY --from=builder /app/webapp .
-EXPOSE 3000
+EXPOSE 8000
 
 ENTRYPOINT ["./webapp"]
