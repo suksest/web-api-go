@@ -23,13 +23,19 @@ func main() {
 
 		dsn := fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8mb4&parseTime=True&loc=Local",
 			db_username, db_password, db_host, db_port, db_name)
-		_, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+		db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 		if err != nil {
 			db_status = err.Error()
-		}
-
-		if os.Getenv("db_host") == "" {
-			db_status = "Database invalid configuration"
+		} else {
+			sqlDB, err := db.DB()
+			if err != nil {
+				db_status = err.Error()
+			} else {
+				err = sqlDB.Ping()
+				if err != nil {
+					db_status = err.Error()
+				}
+			}
 		}
 
 		c.JSON(http.StatusOK, gin.H{
@@ -47,5 +53,5 @@ func main() {
 			},
 		})
 	})
-	r.Run("0.0.0.0:8000") // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+	r.Run("0.0.0.0:8000") // listen and serve on 0.0.0.0:8000
 }
